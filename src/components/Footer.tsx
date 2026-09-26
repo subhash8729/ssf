@@ -71,43 +71,15 @@ export default function Footer() {
           </div>
 
           {/* Column 3: Banking & Support Note */}
-          <div className="lg:col-span-4 space-y-4">
-            <h4 className="text-xs uppercase font-bold tracking-wider text-white border-l-2 border-[#AA331D] pl-2.5">
-              Direct Contribution
-            </h4>
-            <p className="text-xs text-stone-400 leading-relaxed">
-              Supporters can contribute directly to our official bank account to sponsor exam registration and book expenses for deserving candidates:
-            </p>
-
-            <div className="p-3.5 rounded-xl bg-stone-800/80 border border-stone-700/80 text-xs space-y-1 font-mono">
-              <div className="text-stone-300 font-sans font-semibold text-xs">
-                {donationDetails.bankName}
-              </div>
-              <div>A/C: <span className="text-white font-bold">{donationDetails.accountNumber}</span></div>
-              <div>IFSC: <span className="text-[#F5D5CE] font-bold">{donationDetails.ifsc}</span></div>
-            </div>
-
-            <Link
-              href="/donate"
-              className="inline-flex items-center gap-2 text-xs font-semibold text-[#F5D5CE] hover:text-white transition-colors"
-            >
-              <Heart className="w-3.5 h-3.5 text-[#AA331D]" />
-              <span>View full donation & banking guide →</span>
-            </Link>
-          </div>
-        </div>
+                  </div>
 
         {/* Statutory Disclaimer & Legal Links */}
         <div className="pt-8 space-y-4 text-xs text-stone-400">
-          <div className="bg-stone-800/40 p-3.5 rounded-lg border border-stone-800 text-[11px] leading-relaxed">
-            <strong className="text-stone-300">Disclaimer: </strong>
-            Shri Sushil Sharda Foundation is an Indian private limited company established on 30th May 2025, operating in education as a non-governmental and private organization. The foundation provides free ACCA coaching and does not charge tuition fees from eligible students. Professional examination fees, books, and annual subscription charges payable directly to the ACCA body remain external obligations unless specifically sponsored.
-          </div>
+          
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-            <p className="text-center sm:text-left">
-              &copy; {new Date().getFullYear()} {foundationDetails.name}. All rights reserved.
-            </p>
+            
+          
 
             <div className="flex items-center gap-4 text-xs">
               <Link href="/privacy-policy" className="hover:text-stone-200 transition-colors">
