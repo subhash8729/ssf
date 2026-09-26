@@ -8,9 +8,8 @@ export default function Footer() {
   const quickLinks = [
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
-    { label: "Our Mission", href: "/about#mission" },
-    { label: "Why ACCA", href: "/about#why-acca" },
-    { label: "Who Can Apply", href: "/#eligibility" },
+    { label: "Our Mission", href: "/mission" },
+    { label: "Students Hub", href: "/students" },
     { label: "Donate", href: "/donate" },
     { label: "Apply for Support", href: "/apply" },
     { label: "Contact Us", href: "/contact" },

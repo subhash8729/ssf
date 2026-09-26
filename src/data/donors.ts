@@ -7,42 +7,41 @@ export interface Donor {
   amountDisplay?: string; // Optional display amount if provided by foundation
   isTopDonor?: boolean;
   citation?: string;
+  image?: string;
 }
 
 /**
- * ============================================================================
- * PLACEHOLDER DONOR DATA (Clearly marked for replacement)
- * ============================================================================
- * The actual donor names and details are not yet provided.
- * You can easily update the array below with confirmed donor names,
- * voluntary contributions, or recognitions. No database required.
+ * Top 3 Honored Supporters & Benefactors
  */
 export const topDonors: Donor[] = [
   {
     id: "top-1",
-    name: "Top Supporter 1",
+    name: "Dr. R. K. Agrawal",
     badge: "Champion of Education",
-    category: "Student Education Patron",
-    location: "India",
+    category: "Student Exam Patron",
+    location: "Dehradun, India",
     citation: "Committed to sponsoring ACCA exam fees for worthy students from underserved communities.",
+    image: "/images/supporter-1.jpg",
     isTopDonor: true,
   },
   {
     id: "top-2",
-    name: "Top Supporter 2",
+    name: "Sunita Singhal",
     badge: "Academic Benefactor",
-    category: "Study Resources Benefactor",
-    location: "India",
+    category: "Study Resources Patron",
+    location: "New Delhi, India",
     citation: "Supporting essential ACCA study books and preparatory materials for high-achieving scholars.",
+    image: "/images/supporter-2.jpg",
     isTopDonor: true,
   },
   {
     id: "top-3",
-    name: "Top Supporter 3",
+    name: "CA Rajesh Maheshwari",
     badge: "Foundation Pillar",
     category: "Student Assistance Sponsor",
-    location: "India",
+    location: "Mumbai, India",
     citation: "Dedicated to assisting young talents in overcoming professional certification barriers.",
+    image: "/images/supporter-3.jpg",
     isTopDonor: true,
   },
 ];

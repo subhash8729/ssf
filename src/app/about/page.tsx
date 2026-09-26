@@ -143,6 +143,15 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
+          <div className="mt-8 text-center">
+            <Link
+              href="/mission"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#AA331D] text-white text-xs sm:text-sm font-semibold hover:bg-[#8F2B18] transition-colors shadow-xs"
+            >
+              <span>Read Our Full Mission & Philosophy Manifesto</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 

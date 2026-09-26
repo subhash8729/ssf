@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import SectionHeading from "./SectionHeading";
 import { topDonors, allDonors } from "@/data/donors";
 import { Award, Heart, Shield, Users } from "lucide-react";
@@ -31,10 +32,24 @@ export default function DonorSection() {
                 key={donor.id}
                 className="relative rounded-2xl bg-gradient-to-b from-[#FDFBF7] to-white border-2 border-[#F5D5CE] p-7 shadow-xs hover:border-[#AA331D] hover:shadow-md transition-all duration-300 text-center flex flex-col justify-between"
               >
-                {/* Ranking Emblem */}
-                <div className="mx-auto w-12 h-12 rounded-full bg-[#AA331D] text-white font-serif font-bold flex items-center justify-center text-lg shadow-2xs mb-4">
-                  0{idx + 1}
-                </div>
+                {/* Ranking & Photo Emblem */}
+                {donor.image ? (
+                  <div className="relative mx-auto w-20 h-20 rounded-full overflow-hidden mb-4 border-2 border-[#AA331D] shadow-sm p-0.5 bg-white ring-4 ring-[#FDF2F0]">
+                    <div className="relative w-full h-full rounded-full overflow-hidden">
+                      <Image
+                        src={donor.image}
+                        alt={donor.name}
+                        fill
+                        sizes="80px"
+                        className="object-cover object-top"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mx-auto w-12 h-12 rounded-full bg-[#AA331D] text-white font-serif font-bold flex items-center justify-center text-lg shadow-2xs mb-4">
+                    0{idx + 1}
+                  </div>
+                )}
 
                 <div>
                   <span className="text-xs uppercase font-bold tracking-wider text-[#AA331D] block mb-1">

@@ -28,7 +28,7 @@ export default function FoundationLogo({ variant = "header", className = "" }: F
       <div className="flex flex-col">
         <span
           className={`font-serif tracking-tight font-bold text-[#1A1A1A] group-hover:text-[#AA331D] transition-colors ${
-            variant === "footer" ? "text-xs text-white group-hover:text-white" : "text-xs  leading-snug"
+            variant === "footer" ? "text-xs text-white group-hover:text-white" : "text-xs leading-snug"
           }`}
         >
           Shri Sushil Sharda Foundation

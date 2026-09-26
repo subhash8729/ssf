@@ -27,15 +27,15 @@ export default function Header() {
   const navLinks = [
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
-    { label: "Our Mission", href: "/about#mission" },
-    { label: "Students", href: "/#eligibility" },
+    { label: "Our Mission", href: "/mission" },
+    { label: "Students", href: "/students" },
     { label: "Donate", href: "/donate" },
     { label: "Contact", href: "/contact" },
   ];
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
-    return pathname.startsWith(href) && href !== "/#eligibility" && href !== "/about#mission";
+    return pathname === href || pathname.startsWith(href + "/");
   };
 
   return (
