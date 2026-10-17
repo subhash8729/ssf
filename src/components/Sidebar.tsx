@@ -116,7 +116,7 @@ window.addEventListener("keydown", handleKeyDown);
 
         <div className="p-5 sm:p-6 border-b border-stone-100 bg-[#FAF9F6] sticky top-0 z-10 flex items-center justify-between gap-3">
           <div className="min-w-0">
-            <FoundationLogo variant="footer" />
+            <FoundationLogo variant="header" />
           </div>
           <button
             ref={closeButtonRef}
