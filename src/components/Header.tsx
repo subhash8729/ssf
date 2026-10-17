@@ -19,10 +19,26 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
+  // Close mobile menu on route change and handle scroll locking & escape key
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setMobileMenuOpen(false);
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [mobileMenuOpen]);
 
   const navLinks = [
     { label: "Home", href: "/" },
@@ -90,7 +106,7 @@ export default function Header() {
                 className="px-4 py-2 text-xs xl:text-sm font-semibold text-white bg-[#AA331D] hover:bg-[#8F2B18] shadow-xs hover:shadow-md rounded-lg transition-all flex items-center gap-1.5 group"
               >
                 <GraduationCap className="w-4 h-4" />
-                <span>Apply for ACCA Support</span>
+                <span>Apply as Student</span>
                 <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </Link>
             </div>
@@ -163,7 +179,7 @@ export default function Header() {
                 className="w-full py-3 px-4 rounded-lg bg-[#AA331D] text-white font-semibold text-center flex items-center justify-center gap-2 shadow-xs"
               >
                 <GraduationCap className="w-4 h-4" />
-                <span>Apply for ACCA Support</span>
+                <span>Apply as Student</span>
               </Link>
               <Link
                 href="/donate"

@@ -66,12 +66,80 @@ body {
   }
 }
 
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 .animate-float {
   animation: float-slow 4s ease-in-out infinite;
 }
 
 .animate-pulse-soft {
   animation: pulse-soft 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 1.8s infinite;
+}
+
+/* Premium Skeleton Shimmer with subtle warm stone and restrained #AA331D accent */
+@keyframes skeleton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: #F4F1EC;
+}
+
+.skeleton-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.65) 35%,
+    rgba(170, 51, 29, 0.05) 50%,
+    rgba(255, 255, 255, 0.65) 65%,
+    transparent 100%
+  );
+  animation: skeleton-shimmer 1.7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.skeleton-shimmer-accent {
+  position: relative;
+  overflow: hidden;
+  background-color: #FDF2F0;
+  border-color: #F5D5CE;
+}
+
+.skeleton-shimmer-accent::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.7) 35%,
+    rgba(170, 51, 29, 0.12) 50%,
+    rgba(255, 255, 255, 0.7) 65%,
+    transparent 100%
+  );
+  animation: skeleton-shimmer 1.7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 /* Mobile tap feedback */

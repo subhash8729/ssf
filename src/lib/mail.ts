@@ -26,8 +26,12 @@ export async function sendApplicationNotification(
       city: data.city,
       currentClass: data.currentClass,
       institution: data.institution,
-      englishMarks: data.englishMarks,
-      mathsMarks: data.mathsMarks,
+      marksheet10th: data.marksheet10th
+        ? `${data.marksheet10th.name} (${Math.round(data.marksheet10th.size / 1024)} KB)`
+        : "None",
+      marksheet12th: data.marksheet12th
+        ? `${data.marksheet12th.name} (${Math.round(data.marksheet12th.size / 1024)} KB)`
+        : "Not provided",
       reasonPreview: data.reasonForSupport.slice(0, 100) + "...",
     });
 
@@ -64,23 +68,14 @@ export async function sendApplicationNotification(
             <tr><td style="padding: 8px 0; color: #666;"><strong>City / State:</strong></td><td>${data.city}</td></tr>
             <tr><td style="padding: 8px 0; color: #666;"><strong>Current Class:</strong></td><td>${data.currentClass}</td></tr>
             <tr><td style="padding: 8px 0; color: #666;"><strong>School / College:</strong></td><td>${data.institution}</td></tr>
-            <tr><td style="padding: 8px 0; color: #666;"><strong>English Score:</strong></td><td>${data.englishMarks}%</td></tr>
-            <tr><td style="padding: 8px 0; color: #666;"><strong>Maths/Accounts Score:</strong></td><td>${data.mathsMarks}%</td></tr>
+            <tr><td style="padding: 8px 0; color: #666;"><strong>10th Marksheet:</strong></td><td>${data.marksheet10th ? data.marksheet10th.name : "Not provided"}</td></tr>
+            <tr><td style="padding: 8px 0; color: #666;"><strong>12th Marksheet:</strong></td><td>${data.marksheet12th ? data.marksheet12th.name : "Not provided"}</td></tr>
           </table>
 
           <h3 style="color: #333; border-bottom: 2px solid #AA331D; padding-bottom: 8px; margin-top: 24px;">Financial Support Need</h3>
           <p style="background-color: #f9f9f9; padding: 12px; border-left: 4px solid #AA331D; font-size: 14px; line-height: 1.6;">
             ${data.reasonForSupport}
           </p>
-
-          ${
-            data.message
-              ? `
-              <h3 style="color: #333; margin-top: 20px; font-size: 15px;">Additional Notes:</h3>
-              <p style="font-size: 14px; color: #444;">${data.message}</p>
-            `
-              : ""
-          }
         </div>
 
         <div style="border-top: 1px solid #e0e0e0; padding-top: 12px; font-size: 12px; color: #888; text-align: center;">
@@ -89,12 +84,36 @@ export async function sendApplicationNotification(
       </div>
     `;
 
+    // Prepare attachments if base64 dataUrl is present
+    const attachments = [];
+    if (data.marksheet10th?.dataUrl) {
+      const match = data.marksheet10th.dataUrl.match(/^data:(.+);base64,(.+)$/);
+      if (match) {
+        attachments.push({
+          filename: data.marksheet10th.name,
+          content: Buffer.from(match[2], "base64"),
+          contentType: match[1],
+        });
+      }
+    }
+    if (data.marksheet12th?.dataUrl) {
+      const match = data.marksheet12th.dataUrl.match(/^data:(.+);base64,(.+)$/);
+      if (match) {
+        attachments.push({
+          filename: data.marksheet12th.name,
+          content: Buffer.from(match[2], "base64"),
+          contentType: match[1],
+        });
+      }
+    }
+
     const info = await transporter.sendMail({
       from: `"SSSF Portal" <${user}>`,
       to: targetEmail,
       replyTo: data.email,
-      subject: `New ACCA Support Application: ${data.fullName} (${data.englishMarks}% Eng / ${data.mathsMarks}% Math)`,
+      subject: `New ACCA Support Application: ${data.fullName}`,
       html: emailHtml,
+      attachments,
     });
 
     return {

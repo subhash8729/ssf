@@ -344,7 +344,7 @@ export default function AboutPage() {
                 href="/apply"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#AA331D] text-white text-sm font-semibold hover:bg-[#8F2B18] transition-colors"
               >
-                <span>Apply for ACCA Support</span>
+                <span>Apply as Student</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

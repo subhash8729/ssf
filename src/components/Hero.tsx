@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, GraduationCap, HeartHandshake, Sparkles } from "lucide-react";
 
@@ -96,9 +97,9 @@ export default function Hero() {
               {/* Soft decorative background frame */}
               <div className="absolute inset-2 sm:inset-4 rounded-3xl bg-gradient-to-tr from-white/95 via-[#FDF2F0]/80 to-white/95 border border-[#F5D5CE] shadow-lg backdrop-blur-xs" />
               
-              {/* Cutout Student Image */}
+              {/* Cutout Student Image with Skeleton Loader */}
               <div className="relative z-10 w-full h-full flex items-end justify-center px-4 pb-2">
-                <Image
+                <ImageWithSkeleton
                   src="/images/student-acca.png"
                   alt="ACCA Student - Shri Sushil Sharda Foundation"
                   width={460}

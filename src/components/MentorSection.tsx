@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 import Link from "next/link";
 import { ArrowRight, Briefcase, Award, CheckCircle } from "lucide-react";
 import { mentorDetails } from "@/data/foundation";
@@ -14,7 +14,7 @@ export default function MentorSection() {
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-64 sm:w-72 md:w-80 aspect-4/5 rounded-2xl overflow-hidden bg-white border-2 border-[#F5D5CE] shadow-lg flex items-center justify-center p-3">
                 <div className="relative w-full h-full rounded-xl overflow-hidden bg-gradient-to-t from-stone-100 to-white">
-                  <Image
+                  <ImageWithSkeleton
                     src="/images/mentor-amit-dharaniya.webp"
                     alt="Amit Dharaniya - Mentor and Finance Educator"
                     fill

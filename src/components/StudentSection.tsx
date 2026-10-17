@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 import Link from "next/link";
 import { ArrowRight, Quote, Sparkles } from "lucide-react";
 
@@ -12,7 +12,7 @@ export default function StudentSection() {
           <div className="lg:col-span-6 relative order-2 lg:order-1 flex justify-center">
             <div className="relative w-full max-w-lg aspect-4/5 sm:aspect-5/6 rounded-3xl overflow-hidden border-2 border-[#F5D5CE] shadow-xl bg-white p-2">
               <div className="relative w-full h-full rounded-2xl overflow-hidden bg-stone-100">
-                <Image
+                <ImageWithSkeleton
                   src="/images/student-campus.png"
                   alt="ACCA student on campus - Shri Sushil Sharda Foundation"
                   fill

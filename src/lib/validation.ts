@@ -1,3 +1,10 @@
+export interface FileAttachmentData {
+  name: string;
+  size: number;
+  type: string;
+  dataUrl?: string; // base64 data url for preview and submission
+}
+
 export interface ApplicationFormData {
   fullName: string;
   email: string;
@@ -5,16 +12,45 @@ export interface ApplicationFormData {
   city: string;
   currentClass: string;
   institution: string;
-  englishMarks: string;
-  mathsMarks: string;
+  marksheet10th?: FileAttachmentData | null;
+  marksheet12th?: FileAttachmentData | null;
   reasonForSupport: string;
-  message?: string;
   consent: boolean;
 }
 
 export interface ValidationResult {
   isValid: boolean;
   errors: Record<string, string>;
+}
+
+export const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024; // 5MB
+export const ALLOWED_FILE_TYPES = [
+  "application/pdf",
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+];
+
+export function validateFileAttachment(file?: FileAttachmentData | null): string | null {
+  if (!file) return null;
+  
+  if (file.size > MAX_FILE_SIZE_BYTES) {
+    return "File size must not exceed 5MB.";
+  }
+
+  const isValidType =
+    ALLOWED_FILE_TYPES.includes(file.type) ||
+    file.name.toLowerCase().endsWith(".pdf") ||
+    file.name.toLowerCase().endsWith(".jpg") ||
+    file.name.toLowerCase().endsWith(".jpeg") ||
+    file.name.toLowerCase().endsWith(".png") ||
+    file.name.toLowerCase().endsWith(".webp");
+
+  if (!isValidType) {
+    return "Only PDF, JPG, PNG, or WEBP files are allowed.";
+  }
+
+  return null;
 }
 
 export function sanitizeInput(str: string): string {
@@ -76,22 +112,18 @@ export function validateApplicationForm(data: Partial<ApplicationFormData>): Val
     errors.institution = "School/College name must be between 2 and 120 characters.";
   }
 
-  // English Marks
-  const englishMarks = (data.englishMarks || "").trim();
-  const engNum = parseFloat(englishMarks);
-  if (!englishMarks) {
-    errors.englishMarks = "English marks/percentage is required.";
-  } else if (isNaN(engNum) || engNum < 0 || engNum > 100) {
-    errors.englishMarks = "Enter a valid percentage/score between 0 and 100.";
+  // 10th Marksheet (Required)
+  if (!data.marksheet10th) {
+    errors.marksheet10th = "Please upload your Class 10th marksheet (Image or PDF).";
+  } else {
+    const fileErr = validateFileAttachment(data.marksheet10th);
+    if (fileErr) errors.marksheet10th = fileErr;
   }
 
-  // Maths / Accounts Marks
-  const mathsMarks = (data.mathsMarks || "").trim();
-  const mathNum = parseFloat(mathsMarks);
-  if (!mathsMarks) {
-    errors.mathsMarks = "Maths/Accounts marks/percentage is required.";
-  } else if (isNaN(mathNum) || mathNum < 0 || mathNum > 100) {
-    errors.mathsMarks = "Enter a valid percentage/score between 0 and 100.";
+  // 12th Marksheet (Optional if Class 10/11, validated if provided)
+  if (data.marksheet12th) {
+    const fileErr = validateFileAttachment(data.marksheet12th);
+    if (fileErr) errors.marksheet12th = fileErr;
   }
 
   // Reason for Support

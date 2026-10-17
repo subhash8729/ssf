@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 import { MonitorPlay, Video, BookMarked, Users, Check } from "lucide-react";
 
 export default function TeachingSection() {
@@ -18,7 +18,7 @@ export default function TeachingSection() {
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-3xl overflow-hidden border-2 border-[#F5D5CE] shadow-lg bg-white p-2">
               <div className="relative w-full aspect-16/10 rounded-2xl overflow-hidden bg-stone-100">
-                <Image
+                <ImageWithSkeleton
                   src="/images/classroom-training.webp"
                   alt="Instructor teaching students ACCA concepts in classroom"
                   fill
@@ -30,7 +30,7 @@ export default function TeachingSection() {
               {/* Floating secondary badge showcasing real classroom */}
               <div className="absolute -bottom-4 right-4 sm:right-6 bg-white p-2 rounded-2xl border border-stone-200 shadow-md max-w-xs hidden sm:flex items-center gap-3">
                 <div className="relative w-14 h-14 rounded-xl overflow-hidden shrink-0 border border-stone-100">
-                  <Image
+                  <ImageWithSkeleton
                     src="/images/academy-classroom.jpg"
                     alt="Classroom students"
                     fill

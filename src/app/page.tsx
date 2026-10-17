@@ -2,7 +2,7 @@ import React from "react";
 import Hero from "@/components/Hero";
 import TopSupportersMinimal from "@/components/TopSupportersMinimal";
 import Link from "next/link";
-import Image from "next/image";
+import ImageWithSkeleton from "@/components/ImageWithSkeleton";
 import {
   GraduationCap,
   Sparkles,
@@ -117,11 +117,11 @@ export default function Home() {
           <div className="bg-[#FAF9F6] border border-[#F5D5CE]/80 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-xs">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               
-              {/* Big Prominent Mentor Image (Like Previous) */}
+              {/* Big Prominent Mentor Image with Skeleton Loading */}
               <div className="lg:col-span-5 flex justify-center">
                 <div className="relative w-64 sm:w-72 md:w-80 aspect-4/5 rounded-2xl overflow-hidden bg-white border-2 border-[#F5D5CE] shadow-lg flex items-center justify-center p-3 transition-transform duration-300 hover:scale-102">
                   <div className="relative w-full h-full rounded-xl overflow-hidden bg-gradient-to-t from-stone-100 to-white">
-                    <Image
+                    <ImageWithSkeleton
                       src="/images/mentor-amit-dharaniya.webp"
                       alt="Amit Dharaniya - Lead Faculty Mentor"
                       fill

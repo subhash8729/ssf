@@ -33,11 +33,11 @@ function isRateLimited(ip: string): boolean {
 
 export async function POST(req: NextRequest) {
   try {
-    // 1. Basic request size check (max 50KB payload)
+    // 1. Request size check (max 15MB payload to accommodate marksheets)
     const contentLength = req.headers.get("content-length");
-    if (contentLength && parseInt(contentLength, 10) > 50 * 1024) {
+    if (contentLength && parseInt(contentLength, 10) > 15 * 1024 * 1024) {
       return NextResponse.json(
-        { success: false, message: "Payload too large." },
+        { success: false, message: "Payload too large. Files must be within 5MB each." },
         { status: 413 }
       );
     }

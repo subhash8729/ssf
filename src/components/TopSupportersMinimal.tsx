@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 import Link from "next/link";
 import { topDonors } from "@/data/donors";
 import { Award, ArrowRight } from "lucide-react";
@@ -33,7 +33,7 @@ export default function TopSupportersMinimal() {
               {/* Image at Top Left */}
               <div className="relative w-16 h-16 sm:w-18 sm:h-18 rounded-full shrink-0 p-0.5 bg-gradient-to-tr from-[#AA331D] to-[#D1B8B3] shadow-sm transition-transform duration-300 group-hover:scale-105">
                 <div className="relative w-full h-full rounded-full overflow-hidden bg-stone-100">
-                  <Image
+                  <ImageWithSkeleton
                     src={supporter.image || `/images/supporter-${index + 1}.jpg`}
                     alt={supporter.name}
                     fill
