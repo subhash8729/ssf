@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
+import ImageWithSkeleton from "@/components/ImageWithSkeleton";
 import {
   GraduationCap,
   BookOpen,
@@ -343,13 +343,16 @@ export default function StudentsPage() {
 
             <div className="md:col-span-5 flex justify-center">
               <div className="relative w-56 aspect-4/5 rounded-2xl overflow-hidden border-2 border-[#F5D5CE] shadow-lg bg-white p-2">
-                <Image
-                  src="/images/mentor-amit-dharaniya.webp"
-                  alt="Amit Dharaniya - Faculty Mentor"
-                  fill
-                  sizes="240px"
-                  className="object-contain object-bottom"
-                />
+                <div className="relative w-full h-full rounded-xl overflow-hidden bg-gradient-to-t from-stone-100 to-white">
+                  <ImageWithSkeleton
+                    src="/images/mentor-amit-dharaniya.webp"
+                    alt="Amit Dharaniya - Faculty Mentor"
+                    fill
+                    sizes="240px"
+                    className="object-contain object-bottom"
+                    containerClassName="w-full h-full"
+                  />
+                </div>
               </div>
             </div>
           </div>

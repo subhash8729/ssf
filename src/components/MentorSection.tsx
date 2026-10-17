@@ -21,6 +21,7 @@ export default function MentorSection() {
                     sizes="(max-width: 768px) 300px, 384px"
                     className="object-contain object-bottom"
                     priority
+                    containerClassName="w-full h-full"
                   />
                 </div>
 

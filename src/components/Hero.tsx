@@ -99,14 +99,17 @@ export default function Hero() {
               
               {/* Cutout Student Image with Skeleton Loader */}
               <div className="relative z-10 w-full h-full flex items-end justify-center px-4 pb-2">
-                <ImageWithSkeleton
-                  src="/images/student-acca.png"
-                  alt="ACCA Student - Shri Sushil Sharda Foundation"
-                  width={460}
-                  height={580}
-                  priority
-                  className="object-contain max-h-[380px] sm:max-h-[460px] drop-shadow-md select-none transition-transform hover:scale-105 duration-500"
-                />
+                <div className="relative w-full h-full">
+                  <ImageWithSkeleton
+                    src="/images/student-acca.png"
+                    alt="ACCA Student - Shri Sushil Sharda Foundation"
+                    fill
+                    sizes="(max-width: 640px) 320px, (max-width: 1024px) 380px, 460px"
+                    priority
+                    className="object-contain object-bottom drop-shadow-md select-none transition-transform hover:scale-105 duration-500"
+                    containerClassName="w-full h-full"
+                  />
+                </div>
               </div>
 
               {/* Floating Top Badge with Float Animation */}

@@ -39,6 +39,7 @@ export default function TopSupportersMinimal() {
                     fill
                     sizes="72px"
                     className="object-cover object-top"
+                    containerClassName="w-full h-full"
                   />
                 </div>
               </div>

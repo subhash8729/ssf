@@ -18,6 +18,7 @@ export default function StudentSection() {
                   fill
                   sizes="(max-width: 768px) 100vw, 550px"
                   className="object-cover object-top hover:scale-105 transition-transform duration-700"
+                  containerClassName="w-full h-full"
                 />
               </div>
 

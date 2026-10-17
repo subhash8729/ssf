@@ -24,23 +24,25 @@ export default function TeachingSection() {
                   fill
                   sizes="(max-width: 768px) 100vw, 600px"
                   className="object-cover"
+                  containerClassName="w-full h-full"
                 />
               </div>
 
-              {/* Floating secondary badge showcasing real classroom */}
-              <div className="absolute -bottom-4 right-4 sm:right-6 bg-white p-2 rounded-2xl border border-stone-200 shadow-md max-w-xs hidden sm:flex items-center gap-3">
-                <div className="relative w-14 h-14 rounded-xl overflow-hidden shrink-0 border border-stone-100">
+              {/* Floating secondary badge showcasing real classroom - mobile-friendly */}
+              <div className="absolute -bottom-3 right-3 sm:-bottom-4 sm:right-6 bg-white p-1.5 sm:p-2 rounded-2xl border border-stone-200 shadow-md max-w-xs flex items-center gap-2.5 sm:gap-3">
+                <div className="relative w-11 h-11 sm:w-14 sm:h-14 rounded-xl overflow-hidden shrink-0 border border-stone-100">
                   <ImageWithSkeleton
                     src="/images/academy-classroom.jpg"
                     alt="Classroom students"
                     fill
                     sizes="56px"
                     className="object-cover"
+                    containerClassName="w-full h-full"
                   />
                 </div>
                 <div>
                   <p className="text-xs font-bold text-stone-900 leading-tight">Classroom @ ADGA</p>
-                  <p className="text-[11px] text-stone-500">Global Accountancy Training</p>
+                  <p className="text-[10px] sm:text-[11px] text-stone-500">Global Accountancy Training</p>
                 </div>
               </div>
             </div>

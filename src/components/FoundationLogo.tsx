@@ -14,13 +14,13 @@ export default function FoundationLogo({ variant = "header", className = "" }: F
       className={`inline-flex items-center gap-3 group transition-opacity hover:opacity-95 ${className}`}
       aria-label="Shri Sushil Sharda Foundation Home"
     >
-      <div className="relative w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-full overflow-hidden border border-[#F5D5CE] shadow-xs bg-white">
+      <div className="relative w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-full overflow-hidden border border-[#F5D5CE] shadow-xs bg-white flex items-center justify-center p-0.5">
         <Image
           src="/images/foundation-logo.jpeg"
           alt="Shri Sushil Sharda Foundation Emblem"
           fill
           sizes="48px"
-          className="object-cover"
+          className="object-contain"
           priority
         />
       </div>

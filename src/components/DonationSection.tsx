@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 import SectionHeading from "./SectionHeading";
 import { Copy, Check, Building, ShieldCheck, AlertCircle, Sparkles } from "lucide-react";
 import { donationDetails } from "@/data/foundation";
@@ -62,12 +62,13 @@ export default function DonationSection() {
           <div className="lg:col-span-5 space-y-6">
             <div className="relative rounded-3xl overflow-hidden border border-[#F5D5CE] bg-white p-3 shadow-md">
               <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden bg-stone-100">
-                <Image
+                <ImageWithSkeleton
                   src="/images/student-campus.png"
                   alt="Students supported by Shri Sushil Sharda Foundation"
                   fill
                   sizes="(max-width: 768px) 100vw, 450px"
                   className="object-cover object-top"
+                  containerClassName="w-full h-full"
                 />
               </div>
               <div className="p-4 bg-[#FAF9F6] rounded-xl mt-3 border border-stone-100">

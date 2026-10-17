@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import ImageWithSkeleton from "@/components/ImageWithSkeleton";
 import Link from "next/link";
 import SectionHeading from "@/components/SectionHeading";
 import {
@@ -289,13 +289,16 @@ export default function AboutPage() {
 
             <div className="md:col-span-4 flex justify-center">
               <div className="relative w-48 aspect-4/5 rounded-2xl overflow-hidden border-2 border-[#F5D5CE] shadow-md p-2 bg-[#FAF9F6]">
-                <Image
-                  src="/images/mentor-amit-dharaniya.webp"
-                  alt="Amit Dharaniya - Mentor"
-                  fill
-                  sizes="200px"
-                  className="object-contain object-bottom"
-                />
+                <div className="relative w-full h-full rounded-xl overflow-hidden bg-gradient-to-t from-stone-100 to-white">
+                  <ImageWithSkeleton
+                    src="/images/mentor-amit-dharaniya.webp"
+                    alt="Amit Dharaniya - Mentor"
+                    fill
+                    sizes="200px"
+                    className="object-contain object-bottom"
+                    containerClassName="w-full h-full"
+                  />
+                </div>
               </div>
             </div>
           </div>

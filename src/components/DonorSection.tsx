@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 import SectionHeading from "./SectionHeading";
 import { topDonors, allDonors } from "@/data/donors";
 import { Award, Heart, Shield, Users } from "lucide-react";
@@ -36,12 +36,13 @@ export default function DonorSection() {
                 {donor.image ? (
                   <div className="relative mx-auto w-20 h-20 rounded-full overflow-hidden mb-4 border-2 border-[#AA331D] shadow-sm p-0.5 bg-white ring-4 ring-[#FDF2F0]">
                     <div className="relative w-full h-full rounded-full overflow-hidden">
-                      <Image
+                      <ImageWithSkeleton
                         src={donor.image}
                         alt={donor.name}
                         fill
                         sizes="80px"
                         className="object-cover object-top"
+                        containerClassName="w-full h-full"
                       />
                     </div>
                   </div>
