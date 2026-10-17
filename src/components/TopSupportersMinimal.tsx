@@ -5,8 +5,11 @@ import ImageWithSkeleton from "./ImageWithSkeleton";
 import Link from "next/link";
 import { topDonors } from "@/data/donors";
 import { Award, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function TopSupportersMinimal() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-10 sm:py-14 bg-gradient-to-b from-[#FAF9F6] to-white border-t border-stone-200/80">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,11 +18,11 @@ export default function TopSupportersMinimal() {
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FDF2F0] border border-[#F5D5CE] mb-2">
             <Award className="w-3.5 h-3.5 text-[#AA331D]" />
             <span className="text-[11px] font-bold uppercase tracking-wider text-[#AA331D]">
-              Honored Patrons
+              {t.supporters.badge}
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-serif font-bold text-stone-900 tracking-tight">
-            Our Top Supporters
+            {t.supporters.heading}
           </h2>
         </div>
 

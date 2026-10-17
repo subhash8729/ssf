@@ -5,8 +5,10 @@ import ImageWithSkeleton from "./ImageWithSkeleton";
 import SectionHeading from "./SectionHeading";
 import { Copy, Check, Building, ShieldCheck, AlertCircle, Sparkles } from "lucide-react";
 import { donationDetails } from "@/data/foundation";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function DonationSection() {
+  const { t } = useLanguage();
   const [copiedAccount, setCopiedAccount] = useState(false);
   const [copiedIfsc, setCopiedIfsc] = useState(false);
   const [copiedAll, setCopiedAll] = useState(false);
@@ -52,9 +54,9 @@ export default function DonationSection() {
     <section id="donate" className="py-16 sm:py-24 bg-gradient-to-b from-[#FDFBF7] to-white border-t border-stone-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          badge="Support Our Scholars"
-          title="Help a Student Reach a Global Career"
-          subtitle="Your contribution can help a deserving student continue their ACCA journey by supporting the costs that remain outside free tuition."
+          badge={t.donate.badge}
+          title={t.donate.heading}
+          subtitle={t.donate.subtitle}
         />
 
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">

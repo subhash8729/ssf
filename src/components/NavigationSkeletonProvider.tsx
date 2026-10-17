@@ -11,6 +11,7 @@ import React, {
 } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { getRouteSkeleton } from "./skeletons/RouteSkeleton";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface NavigationSkeletonContextValue {
   isNavigating: boolean;
@@ -36,6 +37,7 @@ export default function NavigationSkeletonProvider({
 }) {
   const pathname = usePathname();
   const router = useRouter();
+  const { t } = useLanguage();
   const [, startTransition] = useTransition();
 
   // Navigation loading state
@@ -213,7 +215,7 @@ export default function NavigationSkeletonProvider({
               isFading ? "opacity-0 pointer-events-none" : "opacity-100"
             }`}
           >
-            <span className="sr-only">Loading page content...</span>
+            <span className="sr-only">{t.feedback.loadingText}</span>
             {getRouteSkeleton(activeSkeletonPath)}
           </div>
         )}
@@ -227,7 +229,7 @@ export default function NavigationSkeletonProvider({
               isInitialFading ? "opacity-0 pointer-events-none" : "opacity-100"
             }`}
           >
-            <span className="sr-only">Loading website...</span>
+            <span className="sr-only">{t.feedback.loadingWebsite}</span>
             {getRouteSkeleton(pathname)}
           </div>
         )}

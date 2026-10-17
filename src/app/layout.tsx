@@ -3,6 +3,8 @@ import { Inter, Playfair_Display } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import NavigationSkeletonProvider from "@/components/NavigationSkeletonProvider";
+import FloatingActions from "@/components/FloatingActions";
+import { LanguageProvider } from "@/context/LanguageContext";
 import "./globals.css";
 
 const inter = Inter({
@@ -81,11 +83,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
       <body className="min-h-screen flex flex-col font-sans bg-white text-stone-900 antialiased selection:bg-[#AA331D] selection:text-white">
-        <Header />
-        <NavigationSkeletonProvider>
-          <div className="flex-1">{children}</div>
-        </NavigationSkeletonProvider>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <NavigationSkeletonProvider>
+            <div className="flex-1">{children}</div>
+          </NavigationSkeletonProvider>
+          <Footer />
+          <FloatingActions />
+        </LanguageProvider>
       </body>
     </html>
   );

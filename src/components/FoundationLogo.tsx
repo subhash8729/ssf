@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface FoundationLogoProps {
   variant?: "header" | "footer" | "hero";
@@ -8,6 +11,9 @@ interface FoundationLogoProps {
 }
 
 export default function FoundationLogo({ variant = "header", className = "" }: FoundationLogoProps) {
+  const { t, language } = useLanguage();
+  const isHindi = language === "hi";
+
   return (
     <Link
       href="/"
@@ -31,14 +37,14 @@ export default function FoundationLogo({ variant = "header", className = "" }: F
             variant === "footer" ? "text-xs text-white group-hover:text-white" : "text-xs leading-snug"
           }`}
         >
-          Shri Sushil Sharda Foundation
+          {isHindi ? t.brand.hindiName : t.brand.name}
         </span>
         <span
           className={`text-xs font-medium tracking-wide flex items-center gap-1.5 ${
             variant === "footer" ? "text-stone-300" : "text-[#AA331D]"
           }`}
         >
-          <span>शिक्षा से सशक्तिकरण</span>
+          <span>{isHindi ? t.brand.tagline : t.brand.hindiTagline}</span>
         </span>
       </div>
     </Link>

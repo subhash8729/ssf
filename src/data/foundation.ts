@@ -26,6 +26,8 @@ export const foundationDetails = {
   organizationType: "Indian private limited company (Non-governmental & private organization operating in education)",
   associatedAcademy: "Amit Dharaniya Global Academy",
   academyUrl: "https://www.amitdharaniya.com/",
+  contactWhatsApp: "+919876543210",
+  defaultWhatsAppMessage: "Hello Shri Sushil Sharda Foundation, I would like to inquire about free ACCA coaching.",
 
   introHeading: "Education Should Not Be Limited by Affordability",
   introParagraph1:

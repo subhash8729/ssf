@@ -1,10 +1,15 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import ImageWithSkeleton from "./ImageWithSkeleton";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, GraduationCap, HeartHandshake, Sparkles } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative overflow-hidden pt-6 pb-12 sm:pt-8 sm:pb-16 lg:pt-14 lg:pb-20 bg-white border-b border-stone-200/80">
       {/* Building Image strictly at Top Part with Subtle Height & Smooth Bottom Fade */}
@@ -30,15 +35,15 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-xs border border-[#F5D5CE] shadow-2xs transition-transform duration-300 hover:scale-105 cursor-default">
               <Sparkles className="w-3.5 h-3.5 text-[#AA331D] animate-pulse" />
               <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#AA331D]">
-                Shri Sushil Sharda Foundation • Dehradun
+                {t.hero.eyebrow}
               </span>
             </div>
 
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-bold text-stone-900 tracking-tight leading-[1.18]">
-              Empowering Students Through{" "}
+              {t.hero.headlineStart}{" "}
               <span className="relative inline-block text-[#AA331D] transition-colors duration-300 hover:text-[#8F2B18]">
-                Free ACCA Education
+                {t.hero.headlineAccent}
                 <svg
                   className="absolute left-0 -bottom-1.5 w-full h-2 text-[#AA331D]/35"
                   viewBox="0 0 100 20"
@@ -53,15 +58,15 @@ export default function Hero() {
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-1">
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/95 border border-stone-200 text-xs font-semibold text-stone-800 shadow-2xs hover:border-[#AA331D]/40 hover:bg-[#FDF2F0]/60 transition-all duration-300">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#AA331D]" />
-                100% Free Tuition
+                {t.hero.pillTuition}
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/95 border border-stone-200 text-xs font-semibold text-stone-800 shadow-2xs hover:border-[#AA331D]/40 hover:bg-[#FDF2F0]/60 transition-all duration-300">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#AA331D]" />
-                Big-4 Veteran Mentorship
+                {t.hero.pillMentorship}
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/95 border border-stone-200 text-xs font-semibold text-stone-800 shadow-2xs hover:border-[#AA331D]/40 hover:bg-[#FDF2F0]/60 transition-all duration-300">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#AA331D]" />
-                Global Career Path
+                {t.hero.pillCareer}
               </span>
             </div>
 
@@ -72,7 +77,7 @@ export default function Hero() {
                 className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#AA331D] hover:bg-[#8F2B18] active:scale-95 text-white font-semibold text-sm sm:text-base shadow-sm hover:shadow-lg transition-all flex items-center justify-center gap-2 group cursor-pointer"
               >
                 <GraduationCap className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />
-                <span>Apply for Free Coaching</span>
+                <span>{t.hero.ctaApply}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
@@ -80,19 +85,20 @@ export default function Hero() {
                 className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white hover:bg-[#FDF2F0] active:scale-95 text-[#AA331D] border-2 border-[#AA331D] font-semibold text-sm sm:text-base transition-all flex items-center justify-center gap-2 shadow-2xs hover:shadow-md cursor-pointer"
               >
                 <HeartHandshake className="w-5 h-5 text-[#AA331D] transition-transform duration-300 hover:scale-110" />
-                <span>Support a Student</span>
+                <span>{t.hero.ctaDonate}</span>
               </Link>
             </div>
 
             {/* Quick Micro Tagline */}
             <p className="text-xs text-stone-500 pt-1">
-              Affiliated with <strong className="text-stone-700">Amit Dharaniya Global Academy</strong> • Indian Pvt Ltd Co.
+              {t.hero.taglineMicro}{" "}
+              <strong className="text-stone-700">{t.hero.academyName}</strong> • {t.hero.companyType}
             </p>
           </div>
 
           {/* Student Visual Composition with Floating Micro-Badges & Interactive Tilt */}
           <div className="lg:col-span-5 relative flex justify-center items-center mt-2 lg:mt-0">
-            <div className="relative w-full max-w-sm sm:max-w-md aspect-4/5 flex items-center justify-center">
+            <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md aspect-4/5 flex items-center justify-center">
               
               {/* Soft decorative background frame */}
               <div className="absolute inset-2 sm:inset-4 rounded-3xl bg-gradient-to-tr from-white/95 via-[#FDF2F0]/80 to-white/95 border border-[#F5D5CE] shadow-lg backdrop-blur-xs" />
@@ -118,8 +124,8 @@ export default function Hero() {
                   100%
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-stone-900 leading-tight">Zero Tuition Fee</p>
-                  <p className="text-[10px] text-stone-500">Merit & Need Based</p>
+                  <p className="text-xs font-bold text-stone-900 leading-tight">{t.hero.floatingTopTitle}</p>
+                  <p className="text-[10px] text-stone-500">{t.hero.floatingTopSubtitle}</p>
                 </div>
               </div>
 
@@ -127,8 +133,8 @@ export default function Hero() {
               <div className="absolute bottom-4 right-0 sm:-right-3 z-20 bg-white/95 backdrop-blur-xs border border-[#F5D5CE] rounded-xl py-2 px-3 sm:px-3.5 shadow-md flex items-center gap-2 animate-pulse-soft hover:scale-105 transition-transform">
                 <div className="w-2.5 h-2.5 rounded-full bg-[#AA331D] animate-ping" />
                 <div>
-                  <p className="text-xs font-bold text-[#AA331D] leading-tight">शिक्षा से सशक्तिकरण</p>
-                  <p className="text-[10px] text-stone-600">Empowerment via Education</p>
+                  <p className="text-xs font-bold text-[#AA331D] leading-tight">{t.hero.floatingBottomTitle}</p>
+                  <p className="text-[10px] text-stone-600">{t.hero.floatingBottomSubtitle}</p>
                 </div>
               </div>
             </div>

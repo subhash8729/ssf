@@ -1,9 +1,14 @@
+"use client";
+
 import React from "react";
 import ImageWithSkeleton from "./ImageWithSkeleton";
 import Link from "next/link";
 import { ArrowRight, Quote, Sparkles } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function StudentSection() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-16 sm:py-24 bg-gradient-to-b from-white via-[#FDFBF7] to-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,8 +34,8 @@ export default function StudentSection() {
                     श्री
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-stone-900">Sushil Sharda Foundation</p>
-                    <p className="text-[11px] text-[#AA331D] font-medium">शिक्षा से सशक्तिकरण • Empowerment through Education</p>
+                    <p className="text-xs font-bold text-stone-900">{t.brand.name}</p>
+                    <p className="text-[11px] text-[#AA331D] font-medium">{t.footer.taglineBottom}</p>
                   </div>
                 </div>
               </div>
@@ -42,30 +47,30 @@ export default function StudentSection() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FDF2F0] border border-[#F5D5CE]">
               <Sparkles className="w-3.5 h-3.5 text-[#AA331D]" />
               <span className="text-xs font-bold uppercase tracking-wider text-[#AA331D]">
-                Student Story & Purpose
+                {t.studentSection.badge}
               </span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-4xl font-serif font-bold text-stone-900 leading-tight">
-              Talent Should Never Be Stopped by Financial Barriers
+              {t.studentSection.heading}
             </h2>
 
             <div className="space-y-4 text-stone-700 text-base sm:text-lg leading-relaxed">
               <p>
-                Every year, countless bright and dedicated young minds demonstrate outstanding analytical ability, discipline, and ambition. Yet, the formidable expense of international professional qualifications often forces them to abandon their aspirations.
+                {t.studentSection.p1}
               </p>
 
               <div className="p-4 rounded-xl bg-white border-l-4 border-[#AA331D] shadow-2xs">
                 <p className="text-stone-800 italic text-base flex items-start gap-2">
                   <Quote className="w-4 h-4 text-[#AA331D] shrink-0 mt-1 rotate-180" />
                   <span>
-                    A deserving student may have the talent, discipline and ambition to become a global accountant, but financial limitations should not decide their future.
+                    {t.studentSection.quote}
                   </span>
                 </p>
               </div>
 
               <p className="text-stone-600 text-base">
-                Through comprehensive free tuition and structured guidance, the Shri Sushil Sharda Foundation ensures that economic background does not limit intellectual potential. We prepare our scholars to meet the exacting standards of the global chartered accountancy profession.
+                {t.about.whoText3}
               </p>
             </div>
 
@@ -74,7 +79,7 @@ export default function StudentSection() {
                 href="/apply"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg bg-[#AA331D] hover:bg-[#8F2B18] text-white font-semibold shadow-xs hover:shadow-md transition-all group"
               >
-                <span>Start Your Application</span>
+                <span>{t.studentSection.ctaApply}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>

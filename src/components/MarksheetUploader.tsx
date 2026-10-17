@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import { UploadCloud, FileText, Image as ImageIcon, X, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { FileAttachmentData, MAX_FILE_SIZE_BYTES, ALLOWED_FILE_TYPES } from "@/lib/validation";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface MarksheetUploaderProps {
   id: string;
@@ -23,8 +24,9 @@ export default function MarksheetUploader({
   error,
   onFileSelect,
   onErrorChange,
-  helperText = "Upload PDF or Image (JPG, PNG, WEBP) up to 5MB",
+  helperText,
 }: MarksheetUploaderProps) {
+  const { t } = useLanguage();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -149,7 +151,7 @@ export default function MarksheetUploader({
         >
           {label} {required && <span className="text-[#AA331D]">*</span>}
         </label>
-        <span className="text-[11px] text-stone-500">PDF, JPG, PNG (Max 5MB)</span>
+        <span className="text-[11px] text-stone-500">{t.uploader.formatNotice}</span>
       </div>
 
       <input
@@ -168,7 +170,7 @@ export default function MarksheetUploader({
           <div className="flex items-center justify-between text-xs text-stone-700">
             <span className="flex items-center gap-2 font-medium">
               <Loader2 className="w-4 h-4 text-[#AA331D] animate-spin" />
-              Scanning & verifying document...
+              {t.uploader.scanning}
             </span>
             <span className="font-semibold text-[#AA331D]">{uploadProgress}%</span>
           </div>
@@ -210,7 +212,7 @@ export default function MarksheetUploader({
               <div className="flex items-center gap-2 text-[11px] text-stone-500 mt-0.5">
                 <span>{formatFileSize(file.size)}</span>
                 <span>•</span>
-                <span className="text-emerald-700 font-medium">Verified & Ready</span>
+                <span className="text-emerald-700 font-medium">{t.uploader.verified}</span>
               </div>
             </div>
           </div>
@@ -221,13 +223,13 @@ export default function MarksheetUploader({
               onClick={() => inputRef.current?.click()}
               className="px-2.5 py-1 text-xs font-semibold text-[#AA331D] hover:bg-[#FDF2F0] rounded-md transition-colors cursor-pointer"
             >
-              Replace
+              {t.uploader.replace}
             </button>
             <button
               type="button"
               onClick={handleRemove}
               className="p-1 rounded-md text-stone-400 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
-              aria-label="Remove uploaded marksheet"
+              aria-label={t.uploader.remove}
             >
               <X className="w-4 h-4" />
             </button>
@@ -256,11 +258,11 @@ export default function MarksheetUploader({
             </div>
             <div className="text-xs text-stone-700">
               <span className="font-semibold text-[#AA331D] hover:underline">
-                Click to browse
+                {t.uploader.clickToBrowse}
               </span>{" "}
-              or drag & drop your marksheet
+              {t.uploader.orDragDrop}
             </div>
-            <p className="text-[11px] text-stone-500">{helperText}</p>
+            <p className="text-[11px] text-stone-500">{helperText || t.uploader.formatNotice}</p>
           </div>
         </div>
       )}

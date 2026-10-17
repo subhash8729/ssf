@@ -1,13 +1,18 @@
+"use client";
+
 import React from "react";
 import ImageWithSkeleton from "./ImageWithSkeleton";
 import { MonitorPlay, Video, BookMarked, Users, Check } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function TeachingSection() {
+  const { t } = useLanguage();
+
   const highlights = [
-    { title: "Live Online", desc: "Interactive lectures with real-time academic discussion and queries.", icon: Video },
-    { title: "Recorded Classes", desc: "Flexible access to past lectures for thorough revision at your own pace.", icon: MonitorPlay },
-    { title: "Structured ACCA Learning", desc: "Syllabus mapped directly to ACCA global standards and exam criteria.", icon: BookMarked },
-    { title: "Mentorship", desc: "Guidance from experienced finance educators and industry professionals.", icon: Users },
+    { title: t.teaching.feature1Title, desc: t.teaching.feature1Desc, icon: Video },
+    { title: t.teaching.feature2Title, desc: t.teaching.feature2Desc, icon: MonitorPlay },
+    { title: t.teaching.feature3Title, desc: t.teaching.feature3Desc, icon: BookMarked },
+    { title: t.teaching.feature4Title, desc: t.teaching.feature4Desc, icon: Users },
   ];
 
   return (
@@ -41,8 +46,8 @@ export default function TeachingSection() {
                   />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-stone-900 leading-tight">Classroom @ ADGA</p>
-                  <p className="text-[10px] sm:text-[11px] text-stone-500">Global Accountancy Training</p>
+                  <p className="text-xs font-bold text-stone-900 leading-tight">{t.teaching.classroomTitle}</p>
+                  <p className="text-[10px] sm:text-[11px] text-stone-500">{t.teaching.classroomSubtitle}</p>
                 </div>
               </div>
             </div>
@@ -52,39 +57,38 @@ export default function TeachingSection() {
           <div className="lg:col-span-6 space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FDF2F0] border border-[#F5D5CE]">
               <span className="text-xs font-bold uppercase tracking-wider text-[#AA331D]">
-                Instructional Methodology
+                {t.teaching.badge}
               </span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-stone-900 leading-tight">
-              Learning That Reaches Students
+              {t.teaching.heading}
             </h2>
 
             <div className="space-y-4 text-stone-700 text-base sm:text-lg leading-relaxed">
               <p>
-                Quality instruction should never be a privilege reserved only for those who can pay high commercial tuition rates. The foundation combines rigorous academic delivery with modern digital access so that every worthy student can master difficult financial concepts.
-              </p>
-              <p className="text-stone-600 text-base">
-                Whether attending live virtual sessions, re-watching complex accounting modules, or practicing structured examination problems, our students receive continuous mentorship and academic guidance tailored to global benchmarks.
+                {t.about.whoText3}
               </p>
             </div>
 
-            {/* 4 Highlights Grid */}
+            {/* Teaching Capabilities 4-Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              {highlights.map((item, idx) => {
+              {highlights.map((item, index) => {
                 const Icon = item.icon;
                 return (
                   <div
-                    key={idx}
-                    className="p-4 rounded-xl bg-white border border-stone-200/80 shadow-2xs hover:border-[#AA331D]/40 transition-colors"
+                    key={index}
+                    className="p-4 rounded-xl bg-white border border-stone-200/90 shadow-2xs hover:border-[#AA331D]/40 transition-all duration-300"
                   >
                     <div className="flex items-center gap-2.5 mb-1.5">
-                      <div className="w-7 h-7 rounded-lg bg-[#FDF2F0] text-[#AA331D] flex items-center justify-center shrink-0">
+                      <div className="p-1.5 rounded-lg bg-[#FDF2F0] text-[#AA331D]">
                         <Icon className="w-4 h-4" />
                       </div>
-                      <h3 className="font-semibold text-stone-900 text-sm">{item.title}</h3>
+                      <h4 className="font-serif font-bold text-stone-900 text-sm">
+                        {item.title}
+                      </h4>
                     </div>
-                    <p className="text-xs text-stone-600 leading-relaxed pl-9">
+                    <p className="text-xs text-stone-600 leading-relaxed">
                       {item.desc}
                     </p>
                   </div>

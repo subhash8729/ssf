@@ -1,17 +1,23 @@
+"use client";
+
 import React from "react";
 import ImageWithSkeleton from "./ImageWithSkeleton";
 import SectionHeading from "./SectionHeading";
 import { topDonors, allDonors } from "@/data/donors";
 import { Award, Heart, Shield, Users } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function DonorSection() {
+  const { t, language } = useLanguage();
+  const isHindi = language === "hi";
+
   return (
     <section id="supporters" className="py-16 sm:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          badge="Patrons & Well-Wishers"
-          title="Our Supporters"
-          subtitle="We extend our deepest gratitude to our benevolent patrons and well-wishers whose ongoing contributions help sustain student examination and educational requirements."
+          badge={t.supporters.badge}
+          title={t.supporters.heading}
+          subtitle={t.supporters.gratitudeSubtitle}
         />
 
         {/* Top 3 Donors */}
@@ -19,10 +25,10 @@ export default function DonorSection() {
           <div className="text-center mb-8">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FDF2F0] text-[#AA331D] border border-[#F5D5CE]">
               <Award className="w-3.5 h-3.5" />
-              Honored Benefactors
+              {isHindi ? "विशिष्ट दानदाता" : "Honored Benefactors"}
             </span>
             <h3 className="text-2xl font-serif font-bold text-stone-900 mt-2">
-              Top Supporters
+              {t.supporters.heading}
             </h3>
           </div>
 
@@ -54,67 +60,57 @@ export default function DonorSection() {
 
                 <div>
                   <span className="text-xs uppercase font-bold tracking-wider text-[#AA331D] block mb-1">
-                    {donor.badge || "Education Patron"}
+                    {donor.badge || (isHindi ? "शिक्षा संरक्षक" : "Education Patron")}
                   </span>
                   <h4 className="text-xl font-serif font-bold text-stone-900 mb-2">
                     {donor.name}
                   </h4>
-                  <p className="text-xs font-medium text-stone-500 mb-3">
-                    {donor.category} • {donor.location}
-                  </p>
-                  <p className="text-xs text-stone-600 leading-relaxed italic bg-white p-3 rounded-lg border border-stone-200/80">
-                    &ldquo;{donor.citation}&rdquo;
+                  <p className="text-xs text-stone-600 leading-relaxed mb-4">
+                    {donor.category || donor.citation}
                   </p>
                 </div>
 
-                <div className="pt-5 mt-5 border-t border-stone-100 flex items-center justify-center gap-1.5 text-xs text-stone-500 font-medium">
-                  <Heart className="w-3.5 h-3.5 text-[#AA331D]" />
-                  <span>Honored Supporter</span>
+                <div className="pt-4 border-t border-stone-100 flex items-center justify-center gap-1.5 text-xs text-stone-500 font-medium">
+                  <Shield className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>{isHindi ? "सत्यापित योगदान" : "Verified Contribution"}</span>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* All Donors Section */}
-        <div className="max-w-4xl mx-auto bg-[#FAF9F6] border border-stone-200/80 rounded-2xl p-6 sm:p-8">
-          <div className="flex items-center justify-between pb-4 mb-6 border-b border-stone-200">
-            <div className="flex items-center gap-2.5">
+        {/* Other Valued Donors Grid */}
+        <div className="border-t border-stone-200 pt-12">
+          <div className="text-center mb-8">
+            <h4 className="text-lg font-serif font-bold text-stone-900 flex items-center justify-center gap-2">
               <Users className="w-5 h-5 text-[#AA331D]" />
-              <h4 className="text-lg font-serif font-bold text-stone-900">
-                All Supporters & Contributors
-              </h4>
-            </div>
-            <span className="text-xs text-stone-500 font-medium">
-              Sorted by contribution date
-            </span>
+              {isHindi ? "अन्य उदार दानदाता एवं संरक्षक" : "Other Generous Contributors"}
+            </h4>
+            <p className="text-xs text-stone-600 mt-1 max-w-xl mx-auto">
+              {isHindi
+                ? "हम उन सभी समर्थकों के प्रति हृदय से आभारी हैं जो शिक्षा के इस पवित्र कार्य में अपनी आहुति दे रहे हैं।"
+                : "Every donation directly supports a student's examination fees, textbooks, and educational equipment."}
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 max-w-6xl mx-auto">
             {allDonors.map((donor) => (
               <div
                 key={donor.id}
-                className="bg-white p-4 rounded-xl border border-stone-200/70 hover:border-stone-300 transition-colors flex items-start gap-3"
+                className="bg-[#FAF9F6] border border-stone-200/90 rounded-xl p-3.5 text-center hover:bg-white hover:border-[#AA331D] hover:shadow-2xs transition-all"
               >
-                <div className="w-8 h-8 rounded-lg bg-[#FDF2F0] text-[#AA331D] flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
-                  <Shield className="w-4 h-4" />
+                <div className="w-8 h-8 rounded-full bg-[#FDF2F0] text-[#AA331D] mx-auto mb-2 flex items-center justify-center text-xs font-bold font-serif">
+                  {donor.name.charAt(0)}
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold text-stone-900 truncate">{donor.name}</p>
-                  <p className="text-xs text-stone-500">{donor.category} • {donor.location}</p>
-                  {donor.citation && (
-                    <p className="text-[11px] text-stone-600 mt-1 line-clamp-1 italic">
-                      {donor.citation}
-                    </p>
-                  )}
+                <div className="font-serif font-semibold text-stone-900 text-xs sm:text-sm truncate">
+                  {donor.name}
+                </div>
+                <div className="text-[11px] text-stone-500 truncate mt-0.5">
+                  {donor.category || (isHindi ? "दानदाता" : "Contributor")}
                 </div>
               </div>
             ))}
           </div>
-
-          <p className="text-xs text-stone-500 text-center mt-6">
-            Note: Donor information is managed in static local configuration. If you have contributed and would like your acknowledgment updated, please reach out to our team.
-          </p>
         </div>
       </div>
     </section>
