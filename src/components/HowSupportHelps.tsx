@@ -66,12 +66,6 @@ export default function HowSupportHelps() {
                     {area.description}
                   </p>
                 </div>
-
-                <div className="pt-6 mt-6 border-t border-stone-200/80">
-                  <span className="text-xs font-semibold text-[#AA331D] flex items-center gap-1">
-                    {isHindi ? "प्रत्यक्ष छात्र सहायता लक्ष्य" : "Direct Student Assistance Focus"}
-                  </span>
-                </div>
               </div>
             );
           })}
