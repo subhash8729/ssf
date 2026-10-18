@@ -10,30 +10,26 @@ interface SendMailResult {
 export async function sendApplicationNotification(
   data: ApplicationFormData
 ): Promise<SendMailResult> {
-  const host = process.env.SMTP_HOST;
+  const host = process.env.SMTP_HOST || "smtp.gmail.com";
   const port = parseInt(process.env.SMTP_PORT || "587", 10);
+  const secure = process.env.SMTP_SECURE === "true" || port === 465;
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
-  const targetEmail = process.env.FOUNDATION_EMAIL || "admissions@sushilsharda.org";
+  const targetEmail = process.env.FOUNDATION_EMAIL;
 
-  // Development Fallback: If credentials are not set, log safely and succeed
-  if (!host || !user || !pass) {
-    console.log("[DEV MODE] New Student Application Received (SMTP credentials not configured):", {
-      timestamp: new Date().toISOString(),
-      studentName: data.fullName,
-      email: data.email,
-      phone: data.phone,
-      city: data.city,
-      currentClass: data.currentClass,
-      institution: data.institution,
-      marksheet10th: data.marksheet10th
-        ? `${data.marksheet10th.name} (${Math.round(data.marksheet10th.size / 1024)} KB)`
-        : "None",
-      marksheet12th: data.marksheet12th
-        ? `${data.marksheet12th.name} (${Math.round(data.marksheet12th.size / 1024)} KB)`
-        : "Not provided",
-      reasonPreview: data.reasonForSupport.slice(0, 100) + "...",
-    });
+  // Development Fallback: If credentials are not set in .env, log safely and succeed
+  if (!host || !user || !pass || !targetEmail) {
+    console.warn(
+      "[DEV MODE] Application received but SMTP is not fully configured:",
+      {
+        hasHost: Boolean(host),
+        hasUser: Boolean(user),
+        hasPass: Boolean(pass),
+        hasTargetEmail: Boolean(targetEmail),
+        studentName: data.fullName,
+        email: data.email,
+      }
+    );
 
     return {
       success: true,
@@ -45,7 +41,7 @@ export async function sendApplicationNotification(
     const transporter = nodemailer.createTransport({
       host,
       port,
-      secure: port === 465,
+      secure,
       auth: {
         user,
         pass,

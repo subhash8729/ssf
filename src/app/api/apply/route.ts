@@ -85,6 +85,17 @@ export async function POST(req: NextRequest) {
     // 5. Send notification email via SMTP or development fallback
     const mailResult = await sendApplicationNotification(applicationData);
 
+    if (!mailResult.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "Failed to send notification email. Please try again later or contact the foundation directly.",
+        },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
       {
         success: true,
